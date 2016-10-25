@@ -3737,7 +3737,6 @@ status_t ACodec::setupVideoEncoder(
         if (!msg->findInt32("frame-rate", &tmp)) {
             return INVALID_OPERATION;
         }
-        outputFormat->setInt32("frame-rate", tmp);
         frameRate = (float)tmp;
         mTimePerFrameUs = (int64_t) (1000000.0f / frameRate);
     }
