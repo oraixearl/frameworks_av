@@ -110,6 +110,10 @@ ifeq ($(BOARD_CANT_REALLOCATE_OMX_BUFFERS),true)
 LOCAL_CFLAGS += -DBOARD_CANT_REALLOCATE_OMX_BUFFERS
 endif
 
+ifeq ($(TARGET_USE_AVC_BASELINE_PROFILE), true)
+LOCAL_CFLAGS += -DUSE_AVC_BASELINE_PROFILE
+endif
+
 LOCAL_STATIC_LIBRARIES := \
         libstagefright_color_conversion \
         libyuv_static \
@@ -142,8 +146,10 @@ ifeq ($(BOARD_USE_SAMSUNG_CAMERAFORMAT_NV21), true)
 LOCAL_CFLAGS += -DUSE_SAMSUNG_CAMERAFORMAT_NV21
 endif
 
+ifneq ($(TARGET_USES_MEDIA_EXTENSIONS),true)
 ifeq ($(TARGET_HAS_LEGACY_CAMERA_HAL1),true)
 LOCAL_CFLAGS += -DCAMCORDER_GRALLOC_SOURCE
+endif
 endif
 
 LOCAL_CFLAGS += -Wno-multichar -Werror -Wno-error=deprecated-declarations -Wall
